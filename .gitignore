@@ -18,7 +18,6 @@
 x64/
 x86/
 bld/
-[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -195,6 +194,10 @@ orleans.codegen.cs
 .node-persist/
 dist/
 
+# tsc generated files
+ssoAuth.js
+ssoAuth.js.map
+
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 #bower_components/
@@ -252,3 +255,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
