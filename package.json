@@ -4,18 +4,19 @@
   "private": true,
   "config": {
     "app-to-debug": "excel",
-    "app-type-to-debug": "desktop"
+    "app-type-to-debug": "desktop",
+    "dev-server-port": 3000
   },
   "scripts": {
     "build": "webpack -p --mode production --https false",
     "build:dev": "webpack --mode development --https false",
-    "configure-sso": "node ./node_modules/office-addin-sso/lib/cli.js configure manifest.xml Office-Addin-NodeJS-SSO",
+    "configure-sso": "node ./node_modules/office-addin-sso/lib/cli.js configure manifest.xml",
     "convert-to-single-host": "node convertToSingleHost.js",
     "lint": "office-addin-lint check",
     "lint:fix": "office-addin-lint fix",
     "prettier": "office-addin-lint prettier",
     "sideload": "office-addin-debugging start manifest.xml",
-    "start": "concurrently \"npm run start:server\" \"npm run sideload\"",
+    "start": "concurrently \"npm run build:dev\" \"npm run start:server\" \"npm run sideload\"",
     "start:server": "node ./node_modules/office-addin-sso/lib/cli.js start manifest.xml",
     "validate": "office-addin-manifest validate manifest.xml",
     "watch": "webpack --watch --mode development"
