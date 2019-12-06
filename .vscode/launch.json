@@ -11,41 +11,10 @@
             "processId": "${command:PickProcess}"
         },
         {
-            "type": "edge",
-            "request": "attach",
-            "name": "Attach to Addin(Webpack)",
-            "port": 9222,
-            "url": "https://localhost:3000/taskpane.html?_host_Info=Excel$Win32$16.01$en-US$$$$0",
-            "webRoot": "${workspaceFolder}/src",
-            "sourceMaps": true,
-            "sourceMapPathOverrides": {
-                "webpack:///./src/*": "${workspaceFolder}/src/*",
-                "webpack:///*": "${webRoot}/*"
-            },
-        },
-        {
-            "type": "edge",
-            "request": "attach",
-            "name": "Attach to Addin",
-            "port": 9222,
-            "url": "https://localhost:3000/taskpane.html?_host_Info=Excel$Win32$16.01$en-US$$$$0",
-            "webRoot": "${workspaceFolder}/src",
-            "sourceMaps": true,
-            "sourceMapPathOverrides": {
-                "/source/*": "${workspaceFolder}/src/*",
-            }
-        },
-        {
             "type": "node",
             "request": "attach",
             "name": "Attach",
             "port": 9229
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\src\\routes\\authRoute.js"
         }
     ]
 }

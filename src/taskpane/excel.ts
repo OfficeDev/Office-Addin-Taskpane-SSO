@@ -5,7 +5,7 @@
 
 /* global $, document, Excel, Office */
 
-import { getGraphData } from "./../helpers/graphHelper";
+import { getGraphData } from "./../helpers/ssoauthhelper";
 
 Office.onReady(info => {
   if (info.host === Office.HostType.Excel) {

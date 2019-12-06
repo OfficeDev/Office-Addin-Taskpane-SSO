@@ -5,10 +5,9 @@
 
 /* global OfficeRuntime */
 import { dialogFallback } from "./fallbackAuthHelper";
-import { handleClientSideErrors } from "./../../node_modules/office-addin-sso/lib/error-handler";
-import { MSGraphHelper } from "./../../node_modules/office-addin-sso/lib/msgraph-helper";
-import { showMessage } from "./../../node_modules/office-addin-sso/lib/message-helper";
+import * as sso from "office-addin-sso";
 import { writeDataToOfficeDocument } from "./../taskpane/taskpane";
+let retryGetAccessToken = 0;
 
 export async function getGraphData(): Promise<void> {
   try {
@@ -16,7 +15,7 @@ export async function getGraphData(): Promise<void> {
       allowSignInPrompt: true,
       forMSGraphAccess: true
     });
-    let exchangeResponse: any = await MSGraphHelper.getGraphToken(
+    let exchangeResponse: any = await sso.getGraphToken(
       bootstrapToken
     );
     if (exchangeResponse.claims) {
@@ -26,7 +25,7 @@ export async function getGraphData(): Promise<void> {
       let mfaBootstrapToken: string = await OfficeRuntime.auth.getAccessToken({
         authChallenge: exchangeResponse.claims
       });
-      exchangeResponse = MSGraphHelper.getGraphToken(mfaBootstrapToken);
+      exchangeResponse = sso.getGraphToken(mfaBootstrapToken);
     }
 
     if (exchangeResponse.error) {
@@ -36,21 +35,21 @@ export async function getGraphData(): Promise<void> {
     } else {
       // makeGraphApiCall makes an AJAX call to the MS Graph endpoint. Errors are caught
       // in the .fail callback of that call
-      const response: any = await MSGraphHelper.makeGraphApiCall(
+      const response: any = await sso.makeGraphApiCall(
         exchangeResponse.access_token
       );
       writeDataToOfficeDocument(response);
-      showMessage("Your data has been added to the document.");
+      sso.showMessage("Your data has been added to the document.");
     }
   } catch (exception) {
     // if handleClientSideErrors returns true then we will try to authenticate via the fallback
     // dialog rather than simply throw and error
     if (exception.code) {
-      if (handleClientSideErrors(exception)) {
+      if (sso.handleClientSideErrors(exception)) {
         dialogFallback();
       }
     } else {
-      showMessage("EXCEPTION: " + JSON.stringify(exception));
+      sso.showMessage("EXCEPTION: " + JSON.stringify(exception));
     }
   }
 }
@@ -62,11 +61,7 @@ function handleAADErrors(exchangeResponse: any): void {
   // Retry the call of getAccessToken (no more than once). This time Office will return a
   // new unexpired bootstrap token.
 
-  let retryGetAccessToken = 0;
-  if (
-    exchangeResponse.error_description.indexOf("AADSTS500133") !== -1 &&
-    retryGetAccessToken <= 0
-  ) {
+  if ((exchangeResponse.error_description.indexOf("AADSTS500133") !== -1) && (retryGetAccessToken <= 0)) {
     retryGetAccessToken++;
     getGraphData();
   } else {

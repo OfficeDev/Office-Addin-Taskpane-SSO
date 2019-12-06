@@ -5,15 +5,12 @@
 
 /* global console, location, Office, Microsoft */
 
-import { MSGraphHelper } from "./../../node_modules/office-addin-sso/lib/msgraph-helper";
-import { showMessage } from "./../../node_modules/office-addin-sso/lib/message-helper";
+import * as sso from "office-addin-sso";
 import { writeDataToOfficeDocument } from "./../taskpane/taskpane";
 var loginDialog;
 
 export function dialogFallback() {
   // We fall back to Dialog API for any error.
-  // TODO: handle specific errors only?
-
   const url = "/fallbackauthdialog.html";
   showLoginPopup(url);
 }
@@ -27,14 +24,14 @@ async function processMessage(arg) {
   if (messageFromDialog.status === "success") {
     // We now have a valid access token.
     loginDialog.close();
-    const response = await MSGraphHelper.makeGraphApiCall(
+    const response = await sso.makeGraphApiCall(
       messageFromDialog.result
     );
     writeDataToOfficeDocument(response);
   } else {
     // Something went wrong with authentication or the authorization of the web application.
     loginDialog.close();
-    showMessage(JSON.stringify(messageFromDialog.error.toString()));
+    sso.showMessage(JSON.stringify(messageFromDialog.error.toString()));
   }
 }
 
@@ -55,7 +52,7 @@ function showLoginPopup(url) {
       console.log("Dialog has initialized. Wiring up events");
       loginDialog = result.value;
       loginDialog.addEventHandler(
-        Microsoft.Office.WebExtension.EventType.DialogMessageReceived,
+        Office.EventType.DialogMessageReceived,
         processMessage
       );
     }
