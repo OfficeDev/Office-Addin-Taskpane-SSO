@@ -11,20 +11,13 @@ let retryGetAccessToken = 0;
 
 export async function getGraphData(): Promise<void> {
   try {
-    let bootstrapToken: string = await OfficeRuntime.auth.getAccessToken({
-      allowSignInPrompt: true,
-      forMSGraphAccess: true
-    });
-    let exchangeResponse: any = await sso.getGraphToken(
-      bootstrapToken
-    );
+    let bootstrapToken: string = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true, forMSGraphAccess: true});
+    let exchangeResponse: any = await sso.getGraphToken(bootstrapToken);
     if (exchangeResponse.claims) {
       // Microsoft Graph requires an additional form of authentication. Have the Office host
       // get a new token using the Claims string, which tells AAD to prompt the user for all
       // required forms of authentication.
-      let mfaBootstrapToken: string = await OfficeRuntime.auth.getAccessToken({
-        authChallenge: exchangeResponse.claims
-      });
+      let mfaBootstrapToken: string = await OfficeRuntime.auth.getAccessToken({ authChallenge: exchangeResponse.claims });
       exchangeResponse = sso.getGraphToken(mfaBootstrapToken);
     }
 
@@ -35,9 +28,7 @@ export async function getGraphData(): Promise<void> {
     } else {
       // makeGraphApiCall makes an AJAX call to the MS Graph endpoint. Errors are caught
       // in the .fail callback of that call
-      const response: any = await sso.makeGraphApiCall(
-        exchangeResponse.access_token
-      );
+      const response: any = await sso.makeGraphApiCall(exchangeResponse.access_token);
       writeDataToOfficeDocument(response);
       sso.showMessage("Your data has been added to the document.");
     }
