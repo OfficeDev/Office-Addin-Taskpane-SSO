@@ -1,7 +1,7 @@
 const convertTest = process.argv[3] === "convert-test";
 const fs = require("fs");
 const host = process.argv[2];
-const hosts = ["excel", "powerpoint", "word"];
+const hosts = ["excel", "outlook", "powerpoint", "word"];
 const path = require("path");
 const util = require("util");
 const testPackages = ["@types/mocha", "@types/node", "current-processes", "mocha", "office-addin-test-helpers",
@@ -80,9 +80,15 @@ async function updatePackageJsonForSingleHost(host) {
 
     // remove scripts that are unrelated to the selected host
     Object.keys(content.scripts).forEach(function (key) {
-        if (key === "convert-to-single-host"
-        ) {
+        if (key === "convert-to-single-host") {
             delete content.scripts[key];
+        }
+        if (key === "sideload" && host === "outlook") {
+            delete content.scripts[key];
+        }
+
+        if (key === "start" && host === "outlook") {
+            content.scripts[key] = "npm run build:dev && concurrently \"npm run start:server\"";
         }
     });
 

@@ -11,7 +11,8 @@
     <title>Contoso Task Pane Add-in</title>
 
     <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
-    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css" />
+    <link rel="stylesheet"
+        href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css" />
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js"></script>
 
     <!-- Load the Office JavaScript APIs -->
@@ -43,19 +44,26 @@
             </li>
         </ul>
         <section class="ms-firstrun-instructionstep__header">
-            <h2 class="ms-font-m"> This add-in demonstrates how to use single sign-on by making a call to Microsoft Graph to get user profile data.</h2>
+            <h2 class="ms-font-m"> This add-in demonstrates how to use single sign-on by making a call to Microsoft
+                Graph to get user profile data.</h2>
             <div class="ms-firstrun-instructionstep__header--image"></div>
         </section>
         <div class="ms-firstrun-instructionstep__welcome-body">
             <p class="ms-font-m ms-firstrun-instructionstep__welcome-intro"><b>To use this add-in:</b></p>
             <ul class="ms-List ms-firstrun-instructionstep__list">
                 <li class="ms-ListItem">
-                    <span class="ms-ListItem-primaryText">Click the button. If you are not logged into Office, you are prompted togit  login.</span>
+                    <span class="ms-ListItem-primaryText">Click the <b>Get My User Profile Information</b>
+                        button.</span>
                     <div class="clearfix"></div>
                 </li>
                 <li class="ms-ListItem">
-                    <span class="ms-ListItem-primaryText">When you are logged in, your user profile information will be displayed in the
-                    document.</span>
+                    <span class="ms-ListItem-secondaryText">If you are not signed into Office, you are prompted to sign
+                        in.</span>
+                    <div class="clearfix"></div>
+                </li>
+                <li class="ms-ListItem">
+                    <span class="ms-ListItem-primaryText">If you haven't previously accepted the app's permissions
+                        request, you'll be prompted to do so.</span>
                     <div class="clearfix"></div>
                 </li>
             </ul>
@@ -67,5 +75,4 @@
         </div>
     </main>
 </body>
-
 </html>
