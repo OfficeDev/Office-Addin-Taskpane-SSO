@@ -13,33 +13,33 @@
   <IconUrl DefaultValue="https://localhost:{PORT}/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:{PORT}/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
-	<Hosts>
-		<Host Name="Mailbox"/>
-	</Hosts>
-	<Requirements>
-		<Sets>
-			<Set Name="MailBox" MinVersion="1.1"/>
-		</Sets>
-	</Requirements>
-	<FormSettings>
-		<Form xsi:type="ItemRead">
-			<DesktopSettings>
-				<SourceLocation DefaultValue="https://localhost:{PORT}/index.html"/>
-				<RequestedHeight>250</RequestedHeight>
-			</DesktopSettings>
-		</Form>
-	</FormSettings>
-	<Permissions>ReadWriteItem</Permissions>
-	<Rule xsi:type="RuleCollection" Mode="Or">
-		<Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
-		<Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read"/>
-	</Rule>
-	<VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
-		<VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
-			<Hosts>
-				<Host xsi:type="MailHost">
-					<DesktopFormFactor>
-						<ExtensionPoint xsi:type="MessageComposeCommandSurface">
+    <Hosts>
+        <Host Name="Mailbox"/>
+    </Hosts>
+    <Requirements>
+        <Sets>
+            <Set Name="MailBox" MinVersion="1.1"/>
+        </Sets>
+    </Requirements>
+    <FormSettings>
+        <Form xsi:type="ItemRead">
+            <DesktopSettings>
+                <SourceLocation DefaultValue="https://localhost:{PORT}/index.html"/>
+                <RequestedHeight>250</RequestedHeight>
+            </DesktopSettings>
+        </Form>
+    </FormSettings>
+    <Permissions>ReadWriteItem</Permissions>
+    <Rule xsi:type="RuleCollection" Mode="Or">
+        <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+        <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read"/>
+    </Rule>
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+        <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+            <Hosts>
+                <Host xsi:type="MailHost">
+                    <DesktopFormFactor>
+                        <ExtensionPoint xsi:type="MessageComposeCommandSurface">
                             <OfficeTab id="TabHome">
                             <Group id="CommandsGroup">
                                 <Label resid="CommandsGroup.Label"/>
@@ -60,10 +60,10 @@
                                 </Control>
                             </Group>
                             </OfficeTab>
-						</ExtensionPoint>
-					</DesktopFormFactor>
-				</Host>
-			</Hosts>
+                        </ExtensionPoint>
+                    </DesktopFormFactor>
+                </Host>
+            </Hosts>
                 <Resources>
                 <bt:Images>
                     <bt:Image id="Icon.16x16" DefaultValue="https://localhost:{PORT}/assets/icon-16.png"/>
@@ -92,6 +92,6 @@
                     <Scope>profile</Scope>
                 </Scopes>  
             </WebApplicationInfo> 
-		</VersionOverrides>
-	</VersionOverrides>
+        </VersionOverrides>
+    </VersionOverrides>
 </OfficeApp>
