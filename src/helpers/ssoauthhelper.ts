@@ -11,7 +11,7 @@ let retryGetAccessToken = 0;
 
 export async function getGraphData(): Promise<void> {
   try {
-    let bootstrapToken: string = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true, forMSGraphAccess: true});
+    let bootstrapToken: string = await OfficeRuntime.auth.getAccessToken({ allowSignInPrompt: true });
     let exchangeResponse: any = await sso.getGraphToken(bootstrapToken);
     if (exchangeResponse.claims) {
       // Microsoft Graph requires an additional form of authentication. Have the Office host
