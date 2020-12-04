@@ -7,7 +7,7 @@
   <DisplayName DefaultValue="Office-Addin-NodeJS-SSO"/>
   <Description DefaultValue="An add-in that shows how to use SSO, and to fallback to interactive login when SSO is not available."/>
   <IconUrl DefaultValue="https://localhost:{PORT}/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:{PORT}/assets/icon-80.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:{PORT}/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
     <AppDomain>https://www.contoso.com</AppDomain>
