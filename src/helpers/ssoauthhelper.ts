@@ -4,7 +4,7 @@
  */
 
 /* global OfficeRuntime */
-import { dialogFallback } from "./fallbackAuthHelper";
+import { dialogFallback } from "./fallbackauthhelper";
 import * as sso from "office-addin-sso";
 import { writeDataToOfficeDocument } from "./../taskpane/taskpane";
 let retryGetAccessToken = 0;
