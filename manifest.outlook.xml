@@ -6,7 +6,7 @@
   xsi:type="MailApp">
   <Id>ac457896-2dd5-4ed3-ba7d-4319ae4929aa</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso0</ProviderName>
+  <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Office-Addin-NodeJS-SSO"/>
   <Description DefaultValue="An add-in that shows how to use SSO, and to fallback to interactive login when SSO is not available."/>

@@ -7,13 +7,14 @@
 import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
+
 /* global $, document, Office */
 
 import { getGraphData } from "./../helpers/ssoauthhelper";
 
-Office.onReady(info => {
+Office.onReady((info) => {
   if (info.host === Office.HostType.PowerPoint) {
-    $(document).ready(function() {
+    $(document).ready(function () {
       $("#getGraphDataButton").click(getGraphData);
     });
   }
@@ -38,7 +39,7 @@ export function writeDataToOfficeDocument(result: Object): void {
   for (let i = 0; i < data.length; i++) {
     userInfo += data[i] + "\n";
   }
-  Office.context.document.setSelectedDataAsync(userInfo, function(asyncResult) {
+  Office.context.document.setSelectedDataAsync(userInfo, function (asyncResult) {
     if (asyncResult.status === Office.AsyncResultStatus.Failed) {
       throw asyncResult.error.message;
     }
