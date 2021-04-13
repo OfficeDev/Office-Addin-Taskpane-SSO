@@ -3,7 +3,7 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global Office, OfficeExtension */
+/* global Office */
 
 import * as excel from "./excel";
 import * as outlook from "./outlook";
@@ -29,7 +29,7 @@ export function writeDataToOfficeDocument(result: string[]): Promise<any> {
         default:
           throw "Unsupported Office host application: This add-in only runs on Excel, Outlook, PowerPoint, or Word.";
       }
-      resolve();
+      resolve(true);
     } catch (error) {
       reject(Error("Unable to write data to document. " + error.toString()));
     }
