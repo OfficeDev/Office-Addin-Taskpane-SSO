@@ -81,19 +81,16 @@ async function updatePackageJsonForSingleHost(host) {
   // remove 'engines' section
   delete content.engines;
 
-  // update sideload and unload scripts to use selected host.
-  ["sideload", "unload"].forEach(key => {
-    content.scripts[key] = content.scripts[`${key}:${host}`];
-  });
-
   // remove scripts that are unrelated to the selected host
   Object.keys(content.scripts).forEach(function (key) {
-    if (key.startsWith("sideload:")
-      || key.startsWith("unload:")
+    if ((key === "sideload" && host === "outlook")
       || key === "convert-to-single-host"
       || key === "start:desktop:outlook"
     ) {
       delete content.scripts[key];
+    }
+    if (key === "start" && host === "outlook") {
+      content.scripts[key] = "npm run build:dev && concurrently \"npm run start:server\"";
     }
   });
 
