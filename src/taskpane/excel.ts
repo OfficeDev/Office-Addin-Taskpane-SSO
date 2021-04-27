@@ -7,21 +7,21 @@
 import "../../assets/icon-16.png";
 import "../../assets/icon-32.png";
 import "../../assets/icon-80.png";
-/* global $, document, Excel, Office */
 
+/* global $, document, Excel, Office */
 
 import { getGraphData } from "./../helpers/ssoauthhelper";
 
-Office.onReady(info => {
+Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
-    $(document).ready(function() {
+    $(document).ready(function () {
       $("#getGraphDataButton").click(getGraphData);
     });
   }
 });
 
 export function writeDataToOfficeDocument(result: Object): Promise<any> {
-  return Excel.run(function(context) {
+  return Excel.run(function (context) {
     const sheet = context.workbook.worksheets.getActiveWorksheet();
     let data = [];
     let userProfileInfo: string[] = [];

@@ -17,7 +17,9 @@ export async function getGraphData(): Promise<void> {
       // Microsoft Graph requires an additional form of authentication. Have the Office host
       // get a new token using the Claims string, which tells AAD to prompt the user for all
       // required forms of authentication.
-      let mfaBootstrapToken: string = await OfficeRuntime.auth.getAccessToken({ authChallenge: exchangeResponse.claims });
+      let mfaBootstrapToken: string = await OfficeRuntime.auth.getAccessToken({
+        authChallenge: exchangeResponse.claims,
+      });
       exchangeResponse = sso.getGraphToken(mfaBootstrapToken);
     }
 
@@ -52,7 +54,7 @@ function handleAADErrors(exchangeResponse: any): void {
   // Retry the call of getAccessToken (no more than once). This time Office will return a
   // new unexpired bootstrap token.
 
-  if ((exchangeResponse.error_description.indexOf("AADSTS500133") !== -1) && (retryGetAccessToken <= 0)) {
+  if (exchangeResponse.error_description.indexOf("AADSTS500133") !== -1 && retryGetAccessToken <= 0) {
     retryGetAccessToken++;
     getGraphData();
   } else {
