@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
+
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const webpack = require("webpack");
 
 const urlDev = "https://localhost:3000/";
 const urlProd = "https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
@@ -75,12 +76,12 @@ module.exports = async (env, options) => {
       new CopyWebpackPlugin({
         patterns: [
           {
-            to: "taskpane.css",
             from: "./src/taskpane/taskpane.css",
+            to: "taskpane.css",
           },
           {
-            to: "[name]." + buildType + ".[ext]",
             from: "manifest*.xml",
+            to: "[name]." + buildType + ".[ext]",
             transform(content) {
               if (dev) {
                 return content;
