@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 jobs:
-  - job: WindowsServer2019
+  - job: Windows10Latest
     pool:
       name: OETest-OfficeClientApps
     steps:
