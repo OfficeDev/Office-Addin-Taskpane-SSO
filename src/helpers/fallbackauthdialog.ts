@@ -8,7 +8,7 @@
 
 import * as Msal from "msal";
 
-Office.initialize = function () {
+Office.onReady(() => {
   if (Office.context.ui.messageParent) {
     userAgentApp.handleRedirectCallback(authCallback);
 
@@ -29,7 +29,7 @@ Office.initialize = function () {
       userAgentApp.loginRedirect(requestObj);
     }
   }
-};
+});
 
 const msalConfig: Msal.Configuration = {
   auth: {
