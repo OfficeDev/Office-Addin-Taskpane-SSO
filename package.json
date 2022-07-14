@@ -5,7 +5,9 @@
   "scripts": {
     "configure-sso": "echo 'not used'",
     "install-dev-certs": "office-addin-dev-certs install",
-    "start": "node ./bin/www"
+    "lint": "echo 'no linter'",
+    "start": "node ./bin/www",
+    "test": "echo 'no tests'"
   },
   "dependencies": {
     "@types/jquery": "^3.5.5",
