@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "echo 'no build'",
     "configure-sso": "echo 'not used'",
     "install-dev-certs": "office-addin-dev-certs install",
     "lint": "echo 'no linter'",
