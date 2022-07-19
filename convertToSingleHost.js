@@ -73,7 +73,8 @@ async function convertProjectToSingleHost(host) {
   // delete all host-specific files
   hosts.forEach(async function (host) {
     await unlinkFileAsync(`./manifest.${host}.xml`);
-    await unlinkFileAsync(`./src/taskpane/${host}.ts`);
+    // Add back after fixing template
+    // await unlinkFileAsync(`./src/taskpane/${host}.ts`);
   });
 
   // delete the .github folder
