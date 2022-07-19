@@ -12,11 +12,11 @@
     "npm": ">=6 <9"
   },
   "scripts": {
-    "build": "echo 'Unavailable'",
-    "configure-sso": "echo 'Unavailable'",
-    "install-dev-certs": "echo 'Unavailable'",
-    "lint": "echo 'Unavailable'",
-    "start": "echo 'Unavailable'",
+    "build": "echo 'Template Temperarily Unavailable'",
+    "configure-sso": "echo 'Template Temperarily Unavailable'",
+    "install-dev-certs": "echo 'Template Temperarily Unavailable'",
+    "lint": "echo 'Template Temperarily Unavailable'",
+    "start": "echo 'Template Temperarily Unavailable'",
     "test": "echo 'no tests'"
   },
   "dependencies": {},
