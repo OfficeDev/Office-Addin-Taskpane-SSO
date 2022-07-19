@@ -123,7 +123,8 @@ function deleteFolder(folder) {
 async function deleteSupportFiles() {
   await unlinkFileAsync("CONTRIBUTING.md");
   await unlinkFileAsync("LICENSE");
-  await unlinkFileAsync("README.md");
+  // Add back after fixing template
+  // await unlinkFileAsync("README.md");
   await unlinkFileAsync("./convertToSingleHost.js");
   await unlinkFileAsync(".npmrc");
 }

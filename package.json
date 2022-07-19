@@ -1,35 +1,24 @@
 {
-  "name": "ssoapp",
+  "name": "office-addin-taskpane-sso",
   "version": "0.0.0",
   "private": true,
+  "config": {
+    "app_to_debug": "excel",
+    "app_type_to_debug": "desktop",
+    "dev_server_port": 3000
+  },
+  "engines": {
+    "node": ">=14 <17",
+    "npm": ">=6 <9"
+  },
   "scripts": {
-    "build": "echo 'no build'",
-    "configure-sso": "echo 'not used'",
-    "install-dev-certs": "office-addin-dev-certs install",
-    "lint": "echo 'no linter'",
-    "start": "node ./bin/www",
+    "build": "echo 'Unavailable'",
+    "configure-sso": "echo 'Unavailable'",
+    "install-dev-certs": "echo 'Unavailable'",
+    "lint": "echo 'Unavailable'",
+    "start": "echo 'Unavailable'",
     "test": "echo 'no tests'"
   },
-  "dependencies": {
-    "@types/jquery": "^3.5.5",
-    "@types/office-js": "^1.0.264",
-    "cookie-parser": "~1.4.5",
-    "debug": "~4.3.1",
-    "dotenv": "^9.0.2",
-    "express": "~4.17.1",
-    "form-urlencoded": "^6.0.3",
-    "http-errors": "~1.8.0",
-    "jquery": "^3.6.0",
-    "jshint": "^2.12.0",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "~1.10.0",
-    "node-fetch": "^2.6.7",
-    "pug": "^3.0.2",
-    "@azure/msal-node": "1.8.0",
-    "jwks-rsa": "^2.0.5",
-    "uuid": "^8.3.1"
-  },
-  "devDependencies": {
-    "office-addin-dev-certs": "1.5.18"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

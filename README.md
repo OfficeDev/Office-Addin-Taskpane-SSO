@@ -1,10 +1,13 @@
-# Office-Addin-TaskPane-SSO
+> # ❗️ Disabled Notice ❗️ 
+>**Thank you** for all your efforts and contributions!
+> ``` office-Addin-Taskpane-SSO ``` is the source code used by the [Yo Office generator](https://github.com/OfficeDev/generator-office) when you create a new Office Add-in that appears in the task pane and uses SSO for graph calls.
+> The community has been great at submitting ideas, issues, and fixes. There are some current problems with the template code that make it unsutible for use right now.
 
-This repository contains the source code used by the [Yo Office generator](https://github.com/OfficeDev/generator-office) when you create a new Office Add-in that appears in the task pane. You can also use this repository as a sample to base your own project from if you choose not to use the generator.
+> ## Can I still use this code?
+> **Security vulnerabilities may exist in the project, or its dependencies.** If you plan to reuse or run any code from this repo, be sure to perform appropriate security checks on the code or dependencies first.
 
-## Instructions
-
-This template is extracted from [Office-Add-in-samples](https://github.com/OfficeDev/Office-Add-in-samples/tree/main/Samples/auth/Office-Add-in-NodeJS-SSO), in the complete section. Follow its instruction to configure and use this template.
+> ## What will happen next?
+> We are working on an update that will bring the template output better in line with current recommened patterns and practices.
 
 ## Copyright
 
