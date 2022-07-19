@@ -14,6 +14,7 @@
   "scripts": {
     "build": "echo 'Template Temperarily Unavailable'",
     "configure-sso": "echo 'Template Temperarily Unavailable'",
+    "convert-to-single-host": "node convertToSingleHost.js",
     "install-dev-certs": "echo 'Template Temperarily Unavailable'",
     "lint": "echo 'Template Temperarily Unavailable'",
     "start": "echo 'Template Temperarily Unavailable'",
