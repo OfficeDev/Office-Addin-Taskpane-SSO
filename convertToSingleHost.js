@@ -30,8 +30,7 @@ async function modifyProjectForSingleHost(host) {
   await convertProjectToSingleHost(host);
   await updatePackageJsonForSingleHost(host);
   if (!convertTest) {
-    // Add back after fixing template
-    // await updateLaunchJsonFile();
+    await updateLaunchJsonFile();
   }
 }
 
@@ -40,10 +39,9 @@ async function convertProjectToSingleHost(host) {
   const manifestContent = await readFileAsync(`./manifest.${host}.xml`, "utf8");
   await writeFileAsync(`./manifest.xml`, manifestContent);
 
-  // Add back after fixing template
-  // // copy over host-specific taskpane code to taskpane.ts
-  // const srcContent = await readFileAsync(`./src/taskpane/${host}.ts`, "utf8");
-  // await writeFileAsync(`./src/taskpane/taskpane.ts`, srcContent);
+  // copy over host-specific taskpane code to taskpane.ts
+  const srcContent = await readFileAsync(`./src/taskpane/${host}.ts`, "utf8");
+  await writeFileAsync(`./src/taskpane/taskpane.ts`, srcContent);
 
   // delete all test files by default for now - eventually we want to convert the tests by default
   if (convertTest && (host === "excel" || host === "word")) {
@@ -73,8 +71,7 @@ async function convertProjectToSingleHost(host) {
   // delete all host-specific files
   hosts.forEach(async function (host) {
     await unlinkFileAsync(`./manifest.${host}.xml`);
-    // Add back after fixing template
-    // await unlinkFileAsync(`./src/taskpane/${host}.ts`);
+    await unlinkFileAsync(`./src/taskpane/${host}.ts`);
   });
 
   // delete the .github folder
@@ -165,8 +162,7 @@ function deleteFolder(folder) {
 async function deleteSupportFiles() {
   await unlinkFileAsync("CONTRIBUTING.md");
   await unlinkFileAsync("LICENSE");
-  // Add back after fixing template
-  // await unlinkFileAsync("README.md");
+  await unlinkFileAsync("README.md");
   await unlinkFileAsync("./convertToSingleHost.js");
   await unlinkFileAsync(".npmrc");
 }
