@@ -9,9 +9,7 @@ import { getGraphData } from "./../helpers/ssoauthhelper";
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.PowerPoint) {
-    $(document).ready(function () {
-      $("#getGraphDataButton").click(getGraphData);
-    });
+    document.getElementById("getProfileButton").onclick = getGraphData;
   }
 });
 

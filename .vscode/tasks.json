@@ -31,7 +31,7 @@
     {
       "label": "Debug: Excel Desktop",
       "type": "npm",
-      "script": "start:desktop -- --app excel",
+      "script": "start",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -41,7 +41,7 @@
     {
       "label": "Debug: Outlook Desktop",
       "type": "npm",
-      "script": "start:desktop -- --app outlook",
+      "script": "start",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -51,7 +51,7 @@
     {
       "label": "Debug: PowerPoint Desktop",
       "type": "npm",
-      "script": "start:desktop -- --app powerpoint",
+      "script": "start",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -61,7 +61,7 @@
     {
       "label": "Debug: Word Desktop",
       "type": "npm",
-      "script": "start:desktop -- --app word",
+      "script": "start",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -90,10 +90,7 @@
         "clear": true,
         "panel": "dedicated"
       },
-      "problemMatcher": [],
-      "runOptions": {
-        "runOn": "folderOpen"
-      }
+      "problemMatcher": []
     },
     {
       "label": "Install",
