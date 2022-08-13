@@ -57,7 +57,7 @@ const publicClientApp: PublicClientApplication = new PublicClientApplication(msa
 
 function handleResponse(response) {
   if (response.tokenType === "id_token") {
-    console.log(response.idToken.rawIdToken);
+    console.log("LoggedIn");
     localStorage.setItem("loggedIn", "yes");
   } else {
     console.log("token type is:" + response.tokenType);
