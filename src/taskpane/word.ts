@@ -3,15 +3,13 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global $, document, Office, Word */
+/* global document, Office, Word */
 
 import { getGraphData } from "./../helpers/ssoauthhelper";
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
-    $(document).ready(function () {
-      $("#getGraphDataButton").click(getGraphData);
-    });
+    document.getElementById("getProfileButton").onclick = getGraphData;
   }
 });
 
