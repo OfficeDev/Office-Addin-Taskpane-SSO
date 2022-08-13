@@ -3,7 +3,7 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global $, document, Excel, Office */
+/* global document, Excel, Office */
 
 import { getGraphData } from "./../helpers/ssoauthhelper";
 

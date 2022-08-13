@@ -10,7 +10,8 @@ import { Configuration, PublicClientApplication, RedirectRequest } from "@azure/
 
 Office.onReady(() => {
   if (Office.context.ui.messageParent) {
-    publicClientApp.handleRedirectPromise()
+    publicClientApp
+      .handleRedirectPromise()
       .then(handleResponse)
       .catch((error) => {
         console.log(error);
