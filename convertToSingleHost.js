@@ -165,6 +165,7 @@ async function deleteSupportFiles() {
   await unlinkFileAsync("README.md");
   await unlinkFileAsync("./convertToSingleHost.js");
   await unlinkFileAsync(".npmrc");
+  await unlinkFileAsync("package-lock.json");
 }
 
 /**

@@ -17,7 +17,6 @@ module.exports = async (env, options) => {
       fallbackauthdialog: "./src/helpers/fallbackauthdialog.ts",
     },
     output: {
-      devtoolModuleFilenameTemplate: "webpack:///[resource-path]?[loaders]",
       clean: true,
     },
     resolve: {
