@@ -8,6 +8,25 @@
 
 import { Configuration, PublicClientApplication, RedirectRequest } from "@azure/msal-browser";
 
+const msalConfig: Configuration = {
+  auth: {
+    clientId: "{application GUID here}", //This is your client ID
+    authority: "https://login.microsoftonline.com/common",
+    redirectUri: "https://localhost:{PORT}/fallbackauthdialog.html",
+    navigateToLoginRequestUrl: false,
+  },
+  cache: {
+    cacheLocation: "localStorage", // Needed to avoid "User login is required" error.
+    storeAuthStateInCookie: true, // Recommended to avoid certain IE/Edge issues.
+  },
+};
+
+const loginRequest: RedirectRequest = {
+  scopes: [`https://graph.microsoft.com/User.Read`],
+};
+
+const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
+
 Office.onReady(() => {
   if (Office.context.ui.messageParent) {
     publicClientApp
@@ -26,35 +45,16 @@ Office.onReady(() => {
     // successfully the first time. To do that, call loginRedirect first instead of
     // acquireTokenRedirect.
     if (localStorage.getItem("loggedIn") === "yes") {
-      publicClientApp.acquireTokenRedirect(requestObj);
+      publicClientApp.acquireTokenRedirect(loginRequest);
     } else {
       // This will login the user and then the (response.tokenType === "id_token")
       // path in authCallback below will run, which sets localStorage.loggedIn to "yes"
       // and then the dialog is redirected back to this script, so the
       // acquireTokenRedirect above runs.
-      publicClientApp.loginRedirect(requestObj);
+      publicClientApp.loginRedirect(loginRequest);
     }
   }
 });
-
-const msalConfig: Configuration = {
-  auth: {
-    clientId: "{application GUID here}", //This is your client ID
-    authority: "https://login.microsoftonline.com/common",
-    redirectUri: "https://localhost:{PORT}/fallbackauthdialog.html",
-    navigateToLoginRequestUrl: false,
-  },
-  cache: {
-    cacheLocation: "localStorage", // Needed to avoid "User login is required" error.
-    storeAuthStateInCookie: true, // Recommended to avoid certain IE/Edge issues.
-  },
-};
-
-var requestObj: RedirectRequest = {
-  scopes: [`https://graph.microsoft.com/User.Read`],
-};
-
-const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
 
 function handleResponse(response) {
   if (response.tokenType === "id_token") {

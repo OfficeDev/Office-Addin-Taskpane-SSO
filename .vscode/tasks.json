@@ -29,37 +29,7 @@
       }
     },
     {
-      "label": "Debug: Excel Desktop",
-      "type": "npm",
-      "script": "start",
-      "presentation": {
-        "clear": true,
-        "panel": "dedicated",
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Debug: Outlook Desktop",
-      "type": "npm",
-      "script": "start",
-      "presentation": {
-        "clear": true,
-        "panel": "dedicated",
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Debug: PowerPoint Desktop",
-      "type": "npm",
-      "script": "start",
-      "presentation": {
-        "clear": true,
-        "panel": "dedicated",
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Debug: Word Desktop",
+      "label": "Debug: Desktop",
       "type": "npm",
       "script": "start",
       "presentation": {

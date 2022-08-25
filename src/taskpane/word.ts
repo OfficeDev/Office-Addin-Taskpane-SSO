@@ -9,9 +9,13 @@ import { getGraphData } from "./../helpers/ssoauthhelper";
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
-    document.getElementById("getProfileButton").onclick = getGraphData;
+    document.getElementById("getProfileButton").onclick = run;
   }
 });
+
+export async function run() {
+  getGraphData(writeDataToOfficeDocument);
+}
 
 export function writeDataToOfficeDocument(result: Object): Promise<any> {
   return Word.run(function (context) {
