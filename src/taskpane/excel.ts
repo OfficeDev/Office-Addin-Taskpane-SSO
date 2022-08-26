@@ -3,17 +3,19 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global $, document, Excel, Office */
+/* global document, Excel, Office */
 
 import { getGraphData } from "./../helpers/ssoauthhelper";
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
-    $(document).ready(function () {
-      $("#getGraphDataButton").click(getGraphData);
-    });
+    document.getElementById("getProfileButton").onclick = run;
   }
 });
+
+export async function run() {
+  getGraphData(writeDataToOfficeDocument);
+}
 
 export function writeDataToOfficeDocument(result: Object): Promise<any> {
   return Excel.run(function (context) {

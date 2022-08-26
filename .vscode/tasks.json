@@ -29,39 +29,9 @@
       }
     },
     {
-      "label": "Debug: Excel Desktop",
+      "label": "Debug: Desktop",
       "type": "npm",
-      "script": "start:desktop -- --app excel",
-      "presentation": {
-        "clear": true,
-        "panel": "dedicated",
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Debug: Outlook Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app outlook",
-      "presentation": {
-        "clear": true,
-        "panel": "dedicated",
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Debug: PowerPoint Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app powerpoint",
-      "presentation": {
-        "clear": true,
-        "panel": "dedicated",
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Debug: Word Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app word",
+      "script": "start",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -90,10 +60,7 @@
         "clear": true,
         "panel": "dedicated"
       },
-      "problemMatcher": [],
-      "runOptions": {
-        "runOn": "folderOpen"
-      }
+      "problemMatcher": []
     },
     {
       "label": "Install",
