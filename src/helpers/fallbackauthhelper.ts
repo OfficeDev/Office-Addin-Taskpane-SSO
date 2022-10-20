@@ -5,17 +5,29 @@
 
 /* global console, location, Office */
 
-import * as sso from "office-addin-sso";
+import { getUserData } from "./msgraph-helper";
+import { showMessage } from "./message-helper";
+import { publicClientApp, loginRequest } from "./fallbackauthdialog";
 
 let loginDialog: Office.Dialog = null;
+let homeAccountId = null;
 let callbackFunction = null;
 
-export function dialogFallback(callback) {
-  callbackFunction = callback;
+export async function dialogFallback(callback) {
+  // Attempt to acquire token silently if user is already signed in.
+  if (homeAccountId !== null) {
+    const result = await publicClientApp.acquireTokenSilent(loginRequest);
+    if (result !== null && result.accessToken !== null) {
+      const response = await getUserData(result.accessToken);
+      callbackFunction(response);
+    }
+  } else {
+    callbackFunction = callback;
 
-  // We fall back to Dialog API for any error.
-  const url = "/fallbackauthdialog.html";
-  showLoginPopup(url);
+    // We fall back to Dialog API for any error.
+    const url = "/fallbackauthdialog.html";
+    showLoginPopup(url);
+  }
 }
 
 // This handler responds to the success or failure message that the pop-up dialog receives from the identity provider
@@ -27,7 +39,13 @@ async function processMessage(arg) {
   if (messageFromDialog.status === "success") {
     // We now have a valid access token.
     loginDialog.close();
-    const response = await sso.makeGraphApiCall(messageFromDialog.result);
+
+    // Configure MSAL to use the signed-in account as the active account for future requests.
+    homeAccountId = messageFromDialog.accountId; // Track the account id for future silent token requests.
+    const homeAccount = publicClientApp.getAccountByHomeId(messageFromDialog.accountId);
+    publicClientApp.setActiveAccount(homeAccount);
+
+    const response = await getUserData(messageFromDialog.result);
     callbackFunction(response);
   } else if (messageFromDialog.error === undefined && messageFromDialog.result.errorCode === undefined) {
     // Need to pick the user to use to auth
@@ -35,7 +53,9 @@ async function processMessage(arg) {
     // Something went wrong with authentication or the authorization of the web application.
     loginDialog.close();
     if (messageFromDialog.error) {
-      sso.showMessage(JSON.stringify(messageFromDialog.error.toString()));
+      showMessage(JSON.stringify(messageFromDialog.error.toString()));
+    } else if (messageFromDialog.result) {
+      showMessage(JSON.stringify(messageFromDialog.result.errorMessage.toString()));
     }
   }
 }

@@ -21,11 +21,11 @@ const msalConfig: Configuration = {
   },
 };
 
-const loginRequest: RedirectRequest = {
+export const loginRequest: RedirectRequest = {
   scopes: [`https://graph.microsoft.com/User.Read`],
 };
 
-const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
+export const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
 
 Office.onReady(() => {
   if (Office.context.ui.messageParent) {
