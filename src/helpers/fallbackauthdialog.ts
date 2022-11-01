@@ -4,12 +4,18 @@
  * This file shows how to use MSAL.js to get an access token to Microsoft Graph an pass it to the task pane.
  */
 
-/* global console, localStorage, Office, window */
+/* global console, localStorage, location, Office, window */
 
 import { Configuration, LogLevel, PublicClientApplication, RedirectRequest } from "@azure/msal-browser";
+import { callGetUserData } from "./middle-tier-calls";
+import { showMessage } from "./message-helper";
 
 const clientId = "{application GUID here}"; //This is your client ID
 const accessScope = `api://${window.location.host}/${clientId}/access_as_user`;
+const loginRequest: RedirectRequest = {
+  scopes: [accessScope],
+  extraScopesToConsent: ["user.read"],
+};
 
 const msalConfig: Configuration = {
   auth: {
@@ -47,12 +53,11 @@ const msalConfig: Configuration = {
   },
 };
 
-export const loginRequest: RedirectRequest = {
-  scopes: [accessScope],
-  extraScopesToConsent: ["user.read"],
-};
+const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
 
-export const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
+let loginDialog: Office.Dialog = null;
+let homeAccountId = null;
+let callbackFunction = null;
 
 Office.onReady(() => {
   if (Office.context.ui.messageParent) {
@@ -91,4 +96,63 @@ function handleResponse(response) {
     console.log("token type is:" + response.tokenType);
     Office.context.ui.messageParent(JSON.stringify({ status: "success", result: response.accessToken }));
   }
+}
+
+export async function dialogFallback(callback) {
+  // Attempt to acquire token silently if user is already signed in.
+  if (homeAccountId !== null) {
+    const result = await publicClientApp.acquireTokenSilent(loginRequest);
+    if (result !== null && result.accessToken !== null) {
+      const response = await callGetUserData(result.accessToken);
+      callbackFunction(response);
+    }
+  } else {
+    callbackFunction = callback;
+
+    // We fall back to Dialog API for any error.
+    const url = "/fallbackauthdialog.html";
+    showLoginPopup(url);
+  }
+}
+
+// This handler responds to the success or failure message that the pop-up dialog receives from the identity provider
+// and access token provider.
+async function processMessage(arg) {
+  console.log("Message received in processMessage: " + JSON.stringify(arg));
+  let messageFromDialog = JSON.parse(arg.message);
+
+  if (messageFromDialog.status === "success") {
+    // We now have a valid access token.
+    loginDialog.close();
+
+    // Configure MSAL to use the signed-in account as the active account for future requests.
+    homeAccountId = messageFromDialog.accountId; // Track the account id for future silent token requests.
+    const homeAccount = publicClientApp.getAccountByHomeId(messageFromDialog.accountId);
+    publicClientApp.setActiveAccount(homeAccount);
+
+    const response = await callGetUserData(messageFromDialog.result);
+    callbackFunction(response);
+  } else if (messageFromDialog.error === undefined && messageFromDialog.result.errorCode === undefined) {
+    // Need to pick the user to use to auth
+  } else {
+    // Something went wrong with authentication or the authorization of the web application.
+    loginDialog.close();
+    if (messageFromDialog.error) {
+      showMessage(JSON.stringify(messageFromDialog.error.toString()));
+    } else if (messageFromDialog.result) {
+      showMessage(JSON.stringify(messageFromDialog.result.errorMessage.toString()));
+    }
+  }
+}
+
+// Use the Office dialog API to open a pop-up and display the sign-in page for the identity provider.
+function showLoginPopup(url) {
+  var fullUrl = location.protocol + "//" + location.hostname + (location.port ? ":" + location.port : "") + url;
+
+  // height and width are percentages of the size of the parent Office application, e.g., PowerPoint, Excel, Word, etc.
+  Office.context.ui.displayDialogAsync(fullUrl, { height: 60, width: 30 }, function (result) {
+    console.log("Dialog has initialized. Wiring up events");
+    loginDialog = result.value;
+    loginDialog.addEventHandler(Office.EventType.DialogMessageReceived, processMessage);
+  });
 }

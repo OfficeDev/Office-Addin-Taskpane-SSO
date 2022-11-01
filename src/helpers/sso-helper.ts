@@ -3,8 +3,8 @@
  * See LICENSE in the project root for license information.
  */
 
-import { dialogFallback } from "./fallbackauthhelper";
-import { getUserData } from "./msgraph-helper";
+import { dialogFallback } from "./fallbackauthdialog";
+import { callGetUserData } from "./middle-tier-calls";
 import { showMessage } from "./message-helper";
 import { handleClientSideErrors } from "./error-handler";
 
@@ -12,14 +12,14 @@ import { handleClientSideErrors } from "./error-handler";
 
 let retryGetMiddletierToken = 0;
 
-export async function getGraphData(callback): Promise<void> {
+export async function getUserData(callback): Promise<void> {
   try {
     let middletierToken: string = await OfficeRuntime.auth.getAccessToken({
       allowSignInPrompt: true,
       allowConsentPrompt: true,
       forMSGraphAccess: true,
     });
-    let response: any = await getUserData(middletierToken);
+    let response: any = await callGetUserData(middletierToken);
     if (!response) {
       return Promise.reject();
     } else if (response.claims) {
@@ -29,7 +29,7 @@ export async function getGraphData(callback): Promise<void> {
       let mfaMiddletierToken: string = await OfficeRuntime.auth.getAccessToken({
         authChallenge: response.claims,
       });
-      response = getUserData(mfaMiddletierToken);
+      response = callGetUserData(mfaMiddletierToken);
     }
 
     // AAD errors are returned to the client with HTTP code 200, so they do not trigger
@@ -63,7 +63,7 @@ function handleAADErrors(response: any, callback: any): void {
 
   if (response.error_description.indexOf("AADSTS500133") !== -1 && retryGetMiddletierToken <= 0) {
     retryGetMiddletierToken++;
-    getGraphData(callback);
+    getUserData(callback);
   } else {
     dialogFallback(callback);
   }

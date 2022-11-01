@@ -5,7 +5,7 @@
 
 /* global document, Office, Word */
 
-import { getGraphData } from "./../helpers/ssoauthhelper";
+import { getUserData } from "../helpers/sso-helper";
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Word) {
@@ -14,7 +14,7 @@ Office.onReady((info) => {
 });
 
 export async function run() {
-  getGraphData(writeDataToOfficeDocument);
+  getUserData(writeDataToOfficeDocument);
 }
 
 export function writeDataToOfficeDocument(result: Object): Promise<any> {

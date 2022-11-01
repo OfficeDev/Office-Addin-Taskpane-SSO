@@ -6,7 +6,7 @@
 import { showMessage } from "./message-helper";
 import * as $ from "jquery";
 
-export async function getUserData(middletierToken: string): Promise<any> {
+export async function callGetUserData(middletierToken: string): Promise<any> {
   try {
     const response = await $.ajax({
       type: "GET",
@@ -16,6 +16,6 @@ export async function getUserData(middletierToken: string): Promise<any> {
     });
     return response;
   } catch (err) {
-    showMessage(`Error from Microsoft Graph. \n${err.responseText || err.message}`);
+    showMessage(`Error from middle tier. \n${err.responseText || err.message}`);
   }
 }
