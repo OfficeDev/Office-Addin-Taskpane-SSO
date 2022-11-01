@@ -6,12 +6,12 @@
 import { showMessage } from "./message-helper";
 import * as $ from "jquery";
 
-export async function getUserData(bootstrapToken: string): Promise<any> {
+export async function getUserData(middletierToken: string): Promise<any> {
   try {
     const response = await $.ajax({
       type: "GET",
       url: `/getuserdata`,
-      headers: { Authorization: "Bearer " + bootstrapToken },
+      headers: { Authorization: "Bearer " + middletierToken },
       cache: false,
     });
     return response;

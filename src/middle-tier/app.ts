@@ -90,5 +90,7 @@ app.use(function (err: any, req: any, res: any) {
 });
 
 getHttpsServerOptions().then((options) => {
-  https.createServer(options, app).listen(port, () => console.log(`Server running on ${port}`));
+  https
+    .createServer(options, app)
+    .listen(port, () => console.log(`Server running on ${port} in ${process.env.NODE_ENV} mode`));
 });

@@ -57,10 +57,6 @@ export function validateJwt(req, res, next): void {
     };
 
     jwt.verify(token, getSigningKeys, validationOptions, (err, payload) => {
-      //custom logic to regex search for tenant id in the issuer.
-      //test multi tenant setup.
-      //test msa
-
       if (err) {
         console.log(err);
         return res.sendStatus(403);

@@ -10,26 +10,26 @@ import { handleClientSideErrors } from "./error-handler";
 
 /* global OfficeRuntime */
 
-let retryGetBootstrapToken = 0;
+let retryGetMiddletierToken = 0;
 
 export async function getGraphData(callback): Promise<void> {
   try {
-    let bootstrapToken: string = await OfficeRuntime.auth.getAccessToken({
+    let middletierToken: string = await OfficeRuntime.auth.getAccessToken({
       allowSignInPrompt: true,
       allowConsentPrompt: true,
       forMSGraphAccess: true,
     });
-    let response: any = await getUserData(bootstrapToken);
+    let response: any = await getUserData(middletierToken);
     if (!response) {
       return Promise.reject();
     } else if (response.claims) {
       // Microsoft Graph requires an additional form of authentication. Have the Office host
       // get a new token using the Claims string, which tells AAD to prompt the user for all
       // required forms of authentication.
-      let mfaBootstrapToken: string = await OfficeRuntime.auth.getAccessToken({
+      let mfaMiddletierToken: string = await OfficeRuntime.auth.getAccessToken({
         authChallenge: response.claims,
       });
-      response = getUserData(mfaBootstrapToken);
+      response = getUserData(mfaMiddletierToken);
     }
 
     // AAD errors are returned to the client with HTTP code 200, so they do not trigger
@@ -55,14 +55,14 @@ export async function getGraphData(callback): Promise<void> {
 }
 
 function handleAADErrors(response: any, callback: any): void {
-  // On rare occasions the bootstrap token is unexpired when Office validates it,
+  // On rare occasions the middle tier token is unexpired when Office validates it,
   // but expires by the time it is sent to AAD for exchange. AAD will respond
   // with "The provided value for the 'assertion' is not valid. The assertion has expired."
   // Retry the call of getAccessToken (no more than once). This time Office will return a
-  // new unexpired bootstrap token.
+  // new unexpired middle tier token.
 
-  if (response.error_description.indexOf("AADSTS500133") !== -1 && retryGetBootstrapToken <= 0) {
-    retryGetBootstrapToken++;
+  if (response.error_description.indexOf("AADSTS500133") !== -1 && retryGetMiddletierToken <= 0) {
+    retryGetMiddletierToken++;
     getGraphData(callback);
   } else {
     dialogFallback(callback);
