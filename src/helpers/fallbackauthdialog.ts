@@ -4,25 +4,52 @@
  * This file shows how to use MSAL.js to get an access token to Microsoft Graph an pass it to the task pane.
  */
 
-/* global console, localStorage, Office */
+/* global console, localStorage, Office, window */
 
-import { Configuration, PublicClientApplication, RedirectRequest } from "@azure/msal-browser";
+import { Configuration, LogLevel, PublicClientApplication, RedirectRequest } from "@azure/msal-browser";
+
+const clientId = "{application GUID here}"; //This is your client ID
+const accessScope = `api://${window.location.host}/${clientId}/access_as_user`;
 
 const msalConfig: Configuration = {
   auth: {
-    clientId: "{application GUID here}", //This is your client ID
+    clientId: clientId,
     authority: "https://login.microsoftonline.com/common",
-    redirectUri: "https://localhost:{PORT}/fallbackauthdialog.html",
+    redirectUri: "https://localhost:{PORT}/fallbackauthdialog.html", // Update config script to enable `https://${window.location.host}/fallbackauthdialog.html`,
     navigateToLoginRequestUrl: false,
   },
   cache: {
     cacheLocation: "localStorage", // Needed to avoid "User login is required" error.
     storeAuthStateInCookie: true, // Recommended to avoid certain IE/Edge issues.
   },
+  system: {
+    loggerOptions: {
+      loggerCallback: (level, message, containsPii) => {
+        if (containsPii) {
+          return;
+        }
+        switch (level) {
+          case LogLevel.Error:
+            console.error(message);
+            return;
+          case LogLevel.Info:
+            console.info(message);
+            return;
+          case LogLevel.Verbose:
+            console.debug(message);
+            return;
+          case LogLevel.Warning:
+            console.warn(message);
+            return;
+        }
+      },
+    },
+  },
 };
 
 export const loginRequest: RedirectRequest = {
-  scopes: [`https://graph.microsoft.com/User.Read`],
+  scopes: [accessScope],
+  extraScopesToConsent: ["user.read"],
 };
 
 export const publicClientApp: PublicClientApplication = new PublicClientApplication(msalConfig);
