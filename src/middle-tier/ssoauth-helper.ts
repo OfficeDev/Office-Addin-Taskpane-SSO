@@ -56,7 +56,7 @@ export function validateJwt(req, res, next): void {
       audience: process.env.CLIENT_ID,
     };
 
-    jwt.verify(token, getSigningKeys, validationOptions, (err, payload) => {
+    jwt.verify(token, getSigningKeys, validationOptions, (err) => {
       if (err) {
         console.log(err);
         return res.sendStatus(403);
