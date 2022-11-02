@@ -1,7 +1,7 @@
 /*
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license in root of repo. -->
  *
- * This file shows how to use MSAL.js to get an access token to Microsoft Graph an pass it to the task pane.
+ * This file shows how to use MSAL.js to get an access token to your server and pass it to the task pane.
  */
 
 /* global console, localStorage, location, Office, window */

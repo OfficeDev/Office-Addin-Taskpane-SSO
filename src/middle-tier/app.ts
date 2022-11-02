@@ -64,7 +64,7 @@ app.get("/ping", function (req: any, res: any) {
 //app.get("/getuserdata", validateJwt, getUserData);
 app.get("/getuserdata", validateJwt, getUserData);
 
-// Get the client side taskpane files requested
+// Get the client side task pane files requested
 app.get("/taskpane.html", async (req: any, res: any) => {
   return res.sendfile("taskpane.html");
 });

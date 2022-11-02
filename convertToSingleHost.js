@@ -39,13 +39,13 @@ async function convertProjectToSingleHost(host) {
   const manifestContent = await readFileAsync(`./manifest.${host}.xml`, "utf8");
   await writeFileAsync(`./manifest.xml`, manifestContent);
 
-  // copy over host-specific taskpane code to taskpane.ts
+  // copy over host-specific task pane code to taskpane.ts
   const srcContent = await readFileAsync(`./src/taskpane/${host}.ts`, "utf8");
   await writeFileAsync(`./src/taskpane/taskpane.ts`, srcContent);
 
   // delete all test files by default for now - eventually we want to convert the tests by default
   if (convertTest && (host === "excel" || host === "word")) {
-    // copy over host-specific taskpane test code to test-taskpane.ts
+    // copy over host-specific task pane test code to test-taskpane.ts
     const testTaskpaneContent = await readFileAsync(`./test/src/${host}-test-taskpane.ts`, "utf8");
     const updatedTestTaskpaneContent = testTaskpaneContent.replace(
       `../../src/taskpane/${host}`, 
