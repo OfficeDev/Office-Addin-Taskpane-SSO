@@ -94,7 +94,9 @@ function handleResponse(response) {
     localStorage.setItem("loggedIn", "yes");
   } else {
     console.log("token type is:" + response.tokenType);
-    Office.context.ui.messageParent(JSON.stringify({ status: "success", result: response.accessToken }));
+    Office.context.ui.messageParent(
+      JSON.stringify({ status: "success", result: response.accessToken, accountId: response.account.homeAccountId })
+    );
   }
 }
 
