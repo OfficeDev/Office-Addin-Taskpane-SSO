@@ -21,7 +21,7 @@ export async function getUserData(callback): Promise<void> {
     });
     let response: any = await callGetUserData(middletierToken);
     if (!response) {
-      return Promise.reject();
+      throw new Error("Middle tier didn't respond");
     } else if (response.claims) {
       // Microsoft Graph requires an additional form of authentication. Have the Office host
       // get a new token using the Claims string, which tells AAD to prompt the user for all
@@ -38,7 +38,6 @@ export async function getUserData(callback): Promise<void> {
       handleAADErrors(response, callback);
     } else {
       callback(response);
-      Promise.resolve();
     }
   } catch (exception) {
     // if handleClientSideErrors returns true then we will try to authenticate via the fallback
@@ -49,7 +48,7 @@ export async function getUserData(callback): Promise<void> {
       }
     } else {
       showMessage("EXCEPTION: " + JSON.stringify(exception));
-      Promise.reject();
+      throw exception;
     }
   }
 }

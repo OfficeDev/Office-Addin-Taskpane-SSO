@@ -17,5 +17,6 @@ export async function callGetUserData(middletierToken: string): Promise<any> {
     return response;
   } catch (err) {
     showMessage(`Error from middle tier. \n${err.responseText || err.message}`);
+    throw err;
   }
 }
