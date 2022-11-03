@@ -128,9 +128,11 @@ async function processMessage(arg) {
     loginDialog.close();
 
     // Configure MSAL to use the signed-in account as the active account for future requests.
-    homeAccountId = messageFromDialog.accountId; // Track the account id for future silent token requests.
     const homeAccount = publicClientApp.getAccountByHomeId(messageFromDialog.accountId);
-    publicClientApp.setActiveAccount(homeAccount);
+    if (homeAccount) {
+      homeAccountId = messageFromDialog.accountId; // Track the account id for future silent token requests.
+      publicClientApp.setActiveAccount(homeAccount);
+    }
 
     const response = await callGetUserData(messageFromDialog.result);
     callbackFunction(response);

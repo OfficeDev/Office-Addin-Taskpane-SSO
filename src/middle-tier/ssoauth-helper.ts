@@ -14,17 +14,24 @@ import { JwksClient } from "jwks-rsa";
 const DISCOVERY_KEYS_ENDPOINT = "https://login.microsoftonline.com/common/discovery/v2.0/keys";
 
 export async function getAccessToken(authorization: string): Promise<any> {
-  const scopeName: string = process.env.SCOPE || "User.Read";
   if (!authorization) {
     let error = new Error("No Authorization header was found.");
     return Promise.reject(error);
   } else {
-    const [, /* schema */ jwt] = authorization.split(" ");
+    const scopeName: string = process.env.SCOPE || "User.Read";
+    const [, /* schema */ assertion] = authorization.split(" ");
+
+    const tokenScopes = (jwt.decode(assertion) as jwt.JwtPayload).scp.split(" ");
+    const accessAsUserScope = tokenScopes.find((scope) => scope === "access_as_user");
+    if (!accessAsUserScope) {
+      throw new Error("Missing access_as_user");
+    }
+
     const formParams = {
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion: jwt,
+      assertion: assertion,
       requested_token_use: "on_behalf_of",
       scope: [scopeName].join(" "),
     };
@@ -43,7 +50,7 @@ export async function getAccessToken(authorization: string): Promise<any> {
       },
     });
     const json = await tokenResponse.json();
-    return Promise.resolve(json);
+    return json;
   }
 }
 
