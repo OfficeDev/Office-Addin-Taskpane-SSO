@@ -7,7 +7,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Office-Addin-NodeJS-SSO"/>
+  <DisplayName DefaultValue="Office Add-in Task Pane SSO"/>
   <Description DefaultValue="An add-in that shows how to use SSO, and to fallback to interactive login when SSO is not available."/>
   <IconUrl DefaultValue="https://localhost:{PORT}/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:{PORT}/assets/icon-64.png"/>
@@ -76,11 +76,11 @@
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
         <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group" />
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane" />
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane" />
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started." />
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
+        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Task Pane' button to get started." />
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Task Pane" />
       </bt:LongStrings>
     </Resources>
     <WebApplicationInfo>

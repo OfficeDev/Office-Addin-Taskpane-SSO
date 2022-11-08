@@ -39,6 +39,46 @@
       "problemMatcher": []
     },
     {
+      "label": "Debug: Excel Desktop",
+      "type": "npm",
+      "script": "start:desktop -- --app excel",
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Debug: Outlook Desktop",
+      "type": "npm",
+      "script": "start:desktop -- --app outlook",
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Debug: PowerPoint Desktop",
+      "type": "npm",
+      "script": "start:desktop -- --app powerpoint",
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Debug: Word Desktop",
+      "type": "npm",
+      "script": "start:desktop -- --app word",
+      "presentation": {
+        "clear": true,
+        "panel": "dedicated",
+      },
+      "problemMatcher": []
+    },
+    {
       // To debug your Add-in:
       // 1. When prompted, enter the url (share link) to an Office Online document.
       // 2. Sideload your Add-in. https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-office-add-ins-for-testing

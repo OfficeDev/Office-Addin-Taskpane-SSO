@@ -26,10 +26,10 @@ This template is written using [TypeScript](http://www.typescriptlang.org/). For
 
 - In the Office client application that opens when you run the previous command (i.e., Excel, Word or PowerPoint), make sure that you're signed in with a user that's a member of the same Microsoft 365 organization as the Microsoft 365 administrator account that you used to connect to Azure while configuring SSO in step 3 of the previous section. Doing so establishes the appropriate conditions for SSO to succeed.
 
-- In the Office client application, choose the Home tab, and then choose the Show Taskpane button in the ribbon to open the add-in task pane. The following image shows this button in Excel.
+- In the Office client application, choose the Home tab, and then choose the Show Task Pane button in the ribbon to open the add-in task pane. The following image shows this button in Excel.
 
 
-    ![Example of taskpane ribbon button in an Excel worksheet](https://docs.microsoft.com/en-us/office/dev/add-ins/images/excel-quickstart-addin-3b.png?raw=true)
+    ![Example of task pane ribbon button in an Excel worksheet](https://docs.microsoft.com/en-us/office/dev/add-ins/images/excel-quickstart-addin-3b.png?raw=true)
 
 - At the bottom of the task pane, choose the Get My User Profile Information button to initiate the SSO process.
 
