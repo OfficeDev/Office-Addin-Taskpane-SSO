@@ -32,6 +32,10 @@
       "label": "Debug: Desktop",
       "type": "npm",
       "script": "start",
+      "dependsOn": [
+        "Build (Development)"
+      ],
+      "dependsOrder": "sequence",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -42,6 +46,10 @@
       "label": "Debug: Excel Desktop",
       "type": "npm",
       "script": "start:desktop -- --app excel",
+      "dependsOn": [
+        "Build (Development)"
+      ],
+      "dependsOrder": "sequence",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -52,6 +60,10 @@
       "label": "Debug: Outlook Desktop",
       "type": "npm",
       "script": "start:desktop -- --app outlook",
+      "dependsOn": [
+        "Build (Development)"
+      ],
+      "dependsOrder": "sequence",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -62,6 +74,10 @@
       "label": "Debug: PowerPoint Desktop",
       "type": "npm",
       "script": "start:desktop -- --app powerpoint",
+      "dependsOn": [
+        "Build (Development)"
+      ],
+      "dependsOrder": "sequence",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -72,6 +88,10 @@
       "label": "Debug: Word Desktop",
       "type": "npm",
       "script": "start:desktop -- --app word",
+      "dependsOn": [
+        "Build (Development)"
+      ],
+      "dependsOrder": "sequence",
       "presentation": {
         "clear": true,
         "panel": "dedicated",
@@ -85,6 +105,10 @@
       "label": "Debug: Web",
       "type": "npm",
       "script": "start:web -- --document ${input:officeOnlineDocumentUrl}",
+      "dependsOn": [
+        "Build (Development)"
+      ],
+      "dependsOrder": "sequence",
       "presentation": {
         "clear": true,
         "panel": "shared",

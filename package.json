@@ -16,7 +16,7 @@
     "build:dev": "webpack --mode development",
     "configure-sso": "office-addin-sso configure manifest.xml",
     "convert-to-single-host": "node convertToSingleHost.js",
-    "dev-server": "node --inspect dist/middletier.js",
+    "dev-server": "node --inspect=localhost:8080 dist/middletier.js",
     "lint": "office-addin-lint check",
     "lint:fix": "office-addin-lint fix",
     "prestart": "npm run build:dev",
