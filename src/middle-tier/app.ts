@@ -56,10 +56,11 @@ indexRouter.get("/", function (req, res) {
 app.use("/", indexRouter);
 
 // Middle-tier API calls
-// listen for 'ping'
-app.get("/ping", function (req: any, res: any) {
-  res.send(process.platform);
-});
+// listen for 'ping' to verify service is running
+// Un comment for development debugging, but un needed for production deployment
+// app.get("/ping", function (req: any, res: any) {
+//   res.send(process.platform);
+// });
 
 //app.get("/getuserdata", validateJwt, getUserData);
 app.get("/getuserdata", validateJwt, getUserData);
