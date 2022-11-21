@@ -120,7 +120,9 @@ export async function dialogFallback(callback) {
 // This handler responds to the success or failure message that the pop-up dialog receives from the identity provider
 // and access token provider.
 async function processMessage(arg) {
-  console.log("Message received in processMessage: " + JSON.stringify(arg));
+  // Uncomment to view message content in debugger, but don't deploy this way since it will expose the token.
+  //console.log("Message received in processMessage: " + JSON.stringify(arg));
+
   let messageFromDialog = JSON.parse(arg.message);
 
   if (messageFromDialog.status === "success") {

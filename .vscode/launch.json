@@ -104,13 +104,20 @@
         "preLaunchTask": "Debug: Web"
       },
       {
-        "name": "Middle Tier",
+        "name": "Middle Tier (launch and attach)",
         "type": "node",
         "request": "attach",
-        "port": 9229,
+        "port": 8080,
         "timeout": 600000,
         "preLaunchTask": "Debug: Desktop",
         "postDebugTask": "Stop Debug"
+      },
+      {
+        "name": "Middle Tier (attach to existing)",
+        "type": "node",
+        "request": "attach",
+        "port": 8080,
+        "timeout": 600000
       },
     ]
   }
