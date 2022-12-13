@@ -106,9 +106,6 @@ async function updatePackageJsonForSingleHost(host) {
     ) {
       delete content.scripts[key];
     }
-    if (key === "start" && host === "outlook") {
-      content.scripts[key] = "npm run build:dev && concurrently \"npm run start:server\"";
-    }
   });
 
   if (!convertTest) {
