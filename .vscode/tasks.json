@@ -42,8 +42,15 @@
     },
     {
       "label": "Debug: Excel Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app excel",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "start:desktop",
+        "--",
+        "--app",
+        "excel",
+      ],
       "dependsOn": [
         "Build (Development)"
       ],
@@ -56,8 +63,14 @@
     },
     {
       "label": "Debug: Outlook Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app outlook",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "start:desktop",
+        "--",
+        "--app",
+        "outlook",
       "dependsOn": [
         "Build (Development)"
       ],
@@ -70,8 +83,15 @@
     },
     {
       "label": "Debug: PowerPoint Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app powerpoint",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "start:desktop",
+        "--",
+        "--app",
+        "powerpoint",
+      ],
       "dependsOn": [
         "Build (Development)"
       ],
@@ -84,8 +104,15 @@
     },
     {
       "label": "Debug: Word Desktop",
-      "type": "npm",
-      "script": "start:desktop -- --app word",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "run",
+        "start:desktop",
+        "--",
+        "--app",
+        "word",
+      ],
       "dependsOn": [
         "Build (Development)"
       ],
