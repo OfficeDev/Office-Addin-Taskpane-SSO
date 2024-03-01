@@ -70,7 +70,8 @@
         "start:desktop",
         "--",
         "--app",
-        "outlook",
+        "outlook"
+      ],
       "dependsOn": [
         "Build (Development)"
       ],
@@ -90,7 +91,7 @@
         "start:desktop",
         "--",
         "--app",
-        "powerpoint",
+        "powerpoint"
       ],
       "dependsOn": [
         "Build (Development)"
@@ -111,7 +112,7 @@
         "start:desktop",
         "--",
         "--app",
-        "word",
+        "word"
       ],
       "dependsOn": [
         "Build (Development)"
