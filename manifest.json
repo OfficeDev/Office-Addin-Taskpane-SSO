@@ -8,8 +8,8 @@
       "full": "Contoso Task Pane Add-in"
     },
     "description": {
-      "short": "A template to get started.",
-      "full": "This is the template to get started."
+      "short": "An add-in that shows how to use SSO.",
+      "full": "An add-in that shows how to use SSO, and to fallback to interactive login when SSO is not available."
     },
     "developer": {
       "name": "Contoso",
@@ -30,11 +30,15 @@
       "permissions": {
         "resourceSpecific": [
           {
-            "name": "MailboxItem.Read.User",
+            "name": "Mailbox.ReadWrite.User",
             "type": "Delegated"
           }
         ]
       }
+    },
+    "webApplicationInfo": {
+      "id": "{application GUID here}",
+      "resource": "api://localhost:{PORT}/{application GUID here}"
     },
     "validDomains": ["contoso.com"],
     "extensions": [
@@ -55,7 +59,7 @@
             "id": "TaskPaneRuntime",
             "type": "general",
             "code": {
-              "page": "https://localhost:3000/taskpane.html"
+              "page": "https://localhost:{PORT}/taskpane.html"
             },
             "lifetime": "short",
             "actions": [
@@ -71,8 +75,8 @@
             "id": "CommandsRuntime",
             "type": "general",
             "code": {
-              "page": "https://localhost:3000/commands.html",
-              "script": "https://localhost:3000/commands.js"
+              "page": "https://localhost:{PORT}/commands.html",
+              "script": "https://localhost:{PORT}/commands.js"
             },
             "lifetime": "short",
             "actions": [
@@ -87,33 +91,33 @@
         "ribbons": [
           {
             "contexts": [
-              "mailRead"
+              "mailCompose"
             ],
             "tabs": [
               {
                 "builtInTabId": "TabDefault",
                 "groups": [
                   {
-                    "id": "msgReadGroup",
+                    "id": "msgComposeGroup",
                     "label": "Contoso Add-in",
                     "icons": [
-                      { "size": 16, "url": "https://localhost:3000/assets/icon-16.png" },
-                      { "size": 32, "url": "https://localhost:3000/assets/icon-32.png" },
-                      { "size": 80, "url": "https://localhost:3000/assets/icon-80.png" }
+                      { "size": 16, "url": "https://localhost:{PORT}/assets/icon-16.png" },
+                      { "size": 32, "url": "https://localhost:{PORT}/assets/icon-32.png" },
+                      { "size": 80, "url": "https://localhost:{PORT}/assets/icon-80.png" }
                     ],
                     "controls": [
                       {
-                        "id": "msgReadOpenPaneButton",
+                        "id": "msgComposeOpenPaneButton",
                         "type": "button",
-                        "label": "Show Taskpane",
+                        "label": "Show Task Pane",
                         "icons": [
-                          { "size": 16, "url": "https://localhost:3000/assets/icon-16.png" },
-                          { "size": 32, "url": "https://localhost:3000/assets/icon-32.png" },
-                          { "size": 80, "url": "https://localhost:3000/assets/icon-80.png" }
+                          { "size": 16, "url": "https://localhost:{PORT}/assets/icon-16.png" },
+                          { "size": 32, "url": "https://localhost:{PORT}/assets/icon-32.png" },
+                          { "size": 80, "url": "https://localhost:{PORT}/assets/icon-80.png" }
                         ],
                         "supertip": {
-                          "title": "Show Taskpane",
-                          "description": "Opens a pane displaying all available properties."
+                          "title": "Show Task Pane",
+                          "description": "Opens a task pane."
                         },
                         "actionId": "TaskPaneRuntimeShow"
                       },
@@ -122,9 +126,9 @@
                         "type": "button",
                         "label": "Perform an action",
                         "icons": [
-                          { "size": 16, "url": "https://localhost:3000/assets/icon-16.png" },
-                          { "size": 32, "url": "https://localhost:3000/assets/icon-32.png" },
-                          { "size": 80, "url": "https://localhost:3000/assets/icon-80.png" }
+                          { "size": 16, "url": "https://localhost:{PORT}/assets/icon-16.png" },
+                          { "size": 32, "url": "https://localhost:{PORT}/assets/icon-32.png" },
+                          { "size": 80, "url": "https://localhost:{PORT}/assets/icon-80.png" }
                         ],
                         "supertip": {
                           "title": "Perform an action",
