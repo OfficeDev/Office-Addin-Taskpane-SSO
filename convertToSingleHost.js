@@ -207,6 +207,7 @@ async function updatePackageJsonForJSONManifest() {
   content.scripts.start = "office-addin-debugging start manifest.json";
   content.scripts.stop = "office-addin-debugging stop manifest.json";
   content.scripts.validate = "office-addin-manifest validate manifest.json";
+  content.scripts["configure-sso"] = "office-addin-sso configure manifest.json";
 
   // Write updated JSON to file
   await writeFileAsync(packageJson, JSON.stringify(content, null, 2));
