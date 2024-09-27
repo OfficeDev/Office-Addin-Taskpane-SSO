@@ -36,7 +36,7 @@
     "cookie-parser": "^1.4.6",
     "core-js": "^3.36.0",
     "dotenv": "^8.2.0",
-    "express": "4.20.0",
+    "express": "4.21.0",
     "form-urlencoded": "3.0.0",
     "http-errors": "~1.6.3",
     "jquery": "^3.5.1",
@@ -44,7 +44,7 @@
     "jwks-rsa": "2.1.4",
     "morgan": "1.9.1",
     "node-fetch": "^2.6.1",
-    "office-addin-sso": "^2.1.6",
+    "office-addin-sso": "^2.3.3",
     "regenerator-runtime": "^0.14.1",
     "webpack-node-externals": "^3.0.0"
   },
