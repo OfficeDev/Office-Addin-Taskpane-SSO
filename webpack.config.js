@@ -34,9 +34,6 @@ module.exports = async (env, options) => {
             exclude: /node_modules/,
             use: {
               loader: "babel-loader",
-              options: {
-                presets: ["@babel/preset-typescript"],
-              },
             },
           },
           {
@@ -58,11 +55,6 @@ module.exports = async (env, options) => {
           filename: "taskpane.html",
           template: "./src/taskpane/taskpane.html",
           chunks: ["polyfill", "taskpane"],
-        }),
-        new HtmlWebpackPlugin({
-          filename: "commands.html",
-          template: "./src/commands/commands.html",
-          chunks: ["polyfill", "commands"],
         }),
         new HtmlWebpackPlugin({
           filename: "fallbackauthdialog.html",
@@ -87,6 +79,11 @@ module.exports = async (env, options) => {
               },
             },
           ],
+        }),
+        new HtmlWebpackPlugin({
+          filename: "commands.html",
+          template: "./src/commands/commands.html",
+          chunks: ["polyfill", "commands"],
         }),
       ],
     },
