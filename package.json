@@ -44,7 +44,7 @@
     "jwks-rsa": "2.1.4",
     "morgan": "1.9.1",
     "node-fetch": "^2.6.1",
-    "office-addin-sso": "^2.3.3",
+    "office-addin-sso": "^3.0.1",
     "regenerator-runtime": "^0.14.1",
     "webpack-node-externals": "^3.0.0"
   },
@@ -85,11 +85,14 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "5.1.0"
   },
-  "prettier": { 
+  "prettier": {
     "printWidth": 120,
     "overrides": [
       {
-        "files": ["src/helpers/error-handler.ts", "src/helpers/fallbackauthdialog.ts"],
+        "files": [
+          "src/helpers/error-handler.ts",
+          "src/helpers/fallbackauthdialog.ts"
+        ],
         "options": {
           "trailingComma": "es5"
         }
