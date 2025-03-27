@@ -41,7 +41,7 @@
     "jwks-rsa": "2.1.4",
     "morgan": "1.9.1",
     "node-fetch": "^2.6.1",
-    "office-addin-sso": "^3.0.1",
+    "office-addin-sso": "^3.0.4",
     "regenerator-runtime": "^0.14.1",
     "webpack-node-externals": "^3.0.0"
   },
