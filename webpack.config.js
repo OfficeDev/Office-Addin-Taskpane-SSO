@@ -115,8 +115,9 @@ module.exports = async (env, options) => {
         new CopyWebpackPlugin({
           patterns: [
             {
-              from: ".env",
-              to: ".",
+              from: ".ENV",
+              to: ".env",
+              toType: "file",
             },
           ],
         }),
